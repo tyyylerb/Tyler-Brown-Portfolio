@@ -1,0 +1,11 @@
+body {
+    background-color: rgb(51, 107, 62);
+    color: white;
+}
+
+.intro-message {
+    display: flex;
+    color: black;
+    border-radius: 20px;
+    background-color: rgb(234, 251, 211);
+}
