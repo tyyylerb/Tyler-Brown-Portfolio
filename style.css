@@ -223,6 +223,7 @@ nav ul li a {
     font-size: 30;
     background-color: rgb(0, 0, 0);
     color: white;
+    z-index: 0;
     animation: slideInFromRight 1.5s ease-out forwards;
 }
 
@@ -237,7 +238,7 @@ nav ul li a {
   }
 }
 
-.paragraph {
+.paragraph p, dl {
     margin: 400;
     padding: 40px;
     margin-top: 400;
@@ -245,7 +246,49 @@ nav ul li a {
     background-color: black;
     color: white;
     font-size: 20;
+    display: flexbox;
+    z-index: 5;
     animation: slideInFromLeft 1.5s ease-out forwards;
+}
+
+.paragraph a {
+    color: white;
+}
+
+dl a {
+    color: white;
+}
+
+dd {
+    margin-bottom: 200px;
+}
+
+@media only screen and (max-width: 970px) {
+    .paragraph p, dl {
+        background-repeat: no-repeat;
+        margin-top: 165px;
+        margin-left: 0px;
+        height: inherit;
+        width: 50%;
+        z-index: 4;
+        top: 20%;
+        left: 20%;
+        position: absolute;
+    }
+}
+
+@media only screen and (max-width: 970px) {
+    .message {
+        background-repeat: no-repeat;
+        margin-top: 109px;
+        margin-left: 0px;
+        height: inherit;
+        width: 50%;
+        z-index: 4;
+        top: 0%;
+        left: 20%;
+        position: absolute;
+    }
 }
 
 @keyframes slideInFromLeft {
@@ -257,7 +300,7 @@ nav ul li a {
     transform: translateX(0);
     opacity: 100;
   }
-}
+} 
 
 footer {
     background-color: black;
