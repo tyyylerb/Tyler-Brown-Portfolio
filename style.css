@@ -291,6 +291,14 @@ dd {
     }
 }
 
+@media only screen and (max-width: 420px) {
+    .paragraph p, dl {
+        background-repeat: no-repeat;
+        width: 100%;
+        z-index: 4;
+    }
+}
+
 @keyframes slideInFromLeft {
   0% {
     transform: translateX(-100%);
