@@ -1,18 +1,16 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <title>Home - Portfolio</title>
     <link rel="stylesheet" href="style.css">
-    <title>Tyler Brown Portfolio</title>
 </head>
 <body>
-
-
-
-<!-- navbar -->
+    <video autoplay muted loop id="bg-video">
+        <source src="../media/14640112_3840_2160_60fps.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
     <div class="container">
         <nav>
             <input type="checkbox" id="nav" class="hidden">
@@ -21,9 +19,6 @@
                 <i></i>
                 <i></i>
             </label>
-            <div class="logo">
-                <a href="#">tyler brown</a>
-            </div>
             <div class="nav-wrapper">
                 <ul>
                     <li><a href="index.html">Home</a></li>
@@ -33,22 +28,25 @@
             </div>
         </nav>
     </div>
-
-<!-- background video -->
-    <section class="bg">
-        <video src="media/14640112_3840_2160_60fps.mp4" autobuffer loop muted autoplay preload="metadata"></video>
-    </section>
-
-<!-- head content -->
-
-    <div class="message">
+    <div class="content welcome">
         <h1>welcome to my portfolio.</h1>
     </div>
-
-    <div class="paragraph">
+    <div class="content">
         <p>My name is Tyler Brown. I am an aspiring software engineer with an interest in all things related to technology. I find the process of web design, software development, networking, and all forms of IT knowledge to be fascinating, and I try not to limit myself to any specific facet in the world of IT. Oustide of pursuing a major in IT with a concentration in Web Development, I also enjoy spending time outside, hiking, biking, reading, and being with my friends and my beautiful girlfriend. This website exists as a portfolio to host my various projects, with links to websites or GitHub repos when applicable.</p>
     </div>
-
-    <footer>Copyright 2026 Tyler Brown</footer>
+    <script>
+        document.querySelectorAll('.content').forEach(content => {
+            content.addEventListener('mousemove', (e) => {
+                const rect = content.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                content.style.setProperty('--x', x + 'px');
+                content.style.setProperty('--y', y + 'px');
+            });
+        });
+    </script>
+    <footer>
+        <p>Copyright 2026 Tyler Brown</p>
+    </footer>
 </body>
 </html>

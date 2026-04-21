@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <video autoplay muted loop id="bg-video">
+        <source src="../media/14640112_3840_2160_60fps.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="container">
+        <nav>
+            <input type="checkbox" id="nav" class="hidden">
+            <label for="nav" class="nav-btn">
+                <i></i>
+                <i></i>
+                <i></i>
+            </label>
+            <div class="nav-wrapper">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="content welcome">
+        <h1>My Projects</h1>
+    </div>
+    <div class="content">
+        <p>The greatest way to learn something is by practicing and applying the skills you acquire. As I pursure both my college education as well as my own self-guided learning, I have put together multiple projects that show proof of my skills and reinforce essential software engineering principles while providing a mentally envigorating coding experience.</p>
+    </div>
+    <div class="content">
+        <p>project 1: <a href="https://github.com/tyyylerb/playground" target="_blank">Playground</a></p>
+        <p>Playground is a work in progress project intended to help bring artists and creatives together in a collaborative space. Using basic blog functionality, the website will allow for users to create posts, leave comments on other users' posts, and sort created posts by user-assigned categories. An admin tab is also available for creating and removing posts, comments, and categories. This project uses Python and Django for the backend, a SQLite database, and HTML + CSS for the frontend formatting. <a href="https://youtu.be/1TH7BxvV4Ec" target="_blank">(WIP, demonstration video)</a></p>
+    </div>
+    <div class="content">
+        <p>project 2: <a href="https://github.com/tyyylerb/shortcuts" target="_blank">Shortcuts</a></p>
+        <p>Shortcuts is a locally deployed tool that acts as a multi-purpose application. With a variety of buttons available, certain tasks can be automated, such as opening links. This project is built with Python using a Tkinter GUI. <a href="https://youtu.be/kFjm1VITAvM" target="_blank">(WIP, demonstration video)</a></p>
+    </div>
+    <div class="content">
+        <p>project 3: Responsive Web Design Project</p>
+        <p>This simple front end is the final product of my Responsive Web Design with HTML & CSS class. In this project, I learned how to use HTML, CSS, and certain elements of JavaScript to build a webpage for a hypothetical company that has all the fundamental functionalities of a modern website. <a href="https://youtu.be/hJ7d7o7KXzk" target="_blank">(Demonstration video)</p>
+    </div>
+    <script>
+        document.querySelectorAll('.content').forEach(content => {
+            content.addEventListener('mousemove', (e) => {
+                const rect = content.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                content.style.setProperty('--x', x + 'px');
+                content.style.setProperty('--y', y + 'px');
+            });
+        });
+    </script>
+    <footer>
+        <p>Copyright 2026 Tyler Brown</p>
+    </footer>
+</body>
+</html>

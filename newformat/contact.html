@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <video autoplay muted loop id="bg-video">
+        <source src="../media/14640112_3840_2160_60fps.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="container">
+        <nav>
+            <input type="checkbox" id="nav" class="hidden">
+            <label for="nav" class="nav-btn">
+                <i></i>
+                <i></i>
+                <i></i>
+            </label>
+            <div class="nav-wrapper">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="content welcome">
+        <h1>contact me</h1>
+    </div>
+    <div class="content">
+        <p>Thank you for taking the time to look over my portfolio. If you wish to reach out to me, you can find me at any of the links below.</p>
+        <p>email: tylerrbrown914@email.com</p>
+        <p>phone: (330)-931-9465</p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/tyler-brown-a20b34384/" target="_blank">Tyler Brown</a></p>
+        <p>GitHub: <a href="https://github.com/tyyylerb" target="_blank">tyyylerb</a></p>
+    </div>
+    <script>
+        document.querySelectorAll('.content').forEach(content => {
+            content.addEventListener('mousemove', (e) => {
+                const rect = content.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                content.style.setProperty('--x', x + 'px');
+                content.style.setProperty('--y', y + 'px');
+            });
+        });
+    </script>
+    <footer>
+        <p>Copyright 2026 Tyler Brown</p>
+    </footer>
+</body>
+</html>
