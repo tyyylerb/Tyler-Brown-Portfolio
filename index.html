@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <video autoplay muted loop id="bg-video">
+    <video autoplay muted loop playsinline preload="metadata" id="bg-video" aria-hidden="true">
         <source src="media/bkgvid.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
@@ -35,6 +35,20 @@
         <p>My name is Tyler Brown. I am an aspiring software engineer with an interest in all things related to technology. I find the process of web design, software development, networking, and all forms of IT knowledge to be fascinating, and I try not to limit myself to any specific facet in the world of IT. Oustide of pursuing a major in IT with a concentration in Web Development, I also enjoy spending time outside, hiking, biking, reading, and being with my friends and my beautiful girlfriend. This website exists as a portfolio to host my various projects, with links to websites or GitHub repos when applicable.</p>
     </div>
     <script>
+        const video = document.getElementById('bg-video');
+        if (video) {
+            const revealVideo = () => {
+                if (video.readyState >= 2) {
+                    video.classList.add('ready');
+                }
+            };
+
+            video.addEventListener('canplaythrough', revealVideo, { once: true });
+            video.addEventListener('loadeddata', revealVideo, { once: true });
+            video.addEventListener('error', () => video.classList.add('ready'), { once: true });
+            revealVideo();
+        }
+
         document.querySelectorAll('.content').forEach(content => {
             content.addEventListener('mousemove', (e) => {
                 const rect = content.getBoundingClientRect();

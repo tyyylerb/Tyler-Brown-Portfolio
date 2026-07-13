@@ -21,6 +21,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 400;
     padding-bottom: 80px;
+    background-color: #060606;
 }
 
 .container {
@@ -92,6 +93,13 @@ nav ul li a {
     height: 100%;
     object-fit: cover;
     pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    will-change: opacity;
+}
+
+#bg-video.ready {
+    opacity: 1;
 }
 
 .bg video {
@@ -116,7 +124,10 @@ nav ul li a {
     background: linear-gradient(135deg, rgba(20, 20, 20, 0.9), rgba(50, 50, 50, 0.9));
     border-radius: 10px;
     text-align: center;
-    animation: slideIn 1s ease-out;
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+    filter: blur(6px);
+    animation: contentReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     overflow: hidden;
     color: white;
@@ -152,14 +163,16 @@ nav ul li a {
     width: fit-content;
 }
 
-@keyframes slideIn {
+@keyframes contentReveal {
     from {
-        transform: translateX(100%);
         opacity: 0;
+        transform: translateY(24px) scale(0.97);
+        filter: blur(6px);
     }
     to {
-        transform: translateX(0);
         opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
     }
 }
 

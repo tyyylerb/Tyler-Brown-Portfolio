@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <video autoplay muted loop id="bg-video">
+    <video autoplay muted loop playsinline preload="metadata" id="bg-video" aria-hidden="true">
         <source src="media/bkgvid.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
@@ -39,6 +39,20 @@
         <p>GitHub: <a href="https://github.com/tyyylerb" target="_blank">tyyylerb</a></p>
     </div>
     <script>
+        const video = document.getElementById('bg-video');
+        if (video) {
+            const revealVideo = () => {
+                if (video.readyState >= 2) {
+                    video.classList.add('ready');
+                }
+            };
+
+            video.addEventListener('canplaythrough', revealVideo, { once: true });
+            video.addEventListener('loadeddata', revealVideo, { once: true });
+            video.addEventListener('error', () => video.classList.add('ready'), { once: true });
+            revealVideo();
+        }
+
         document.querySelectorAll('.content').forEach(content => {
             content.addEventListener('mousemove', (e) => {
                 const rect = content.getBoundingClientRect();

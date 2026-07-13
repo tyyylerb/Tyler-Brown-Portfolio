@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <video autoplay muted loop id="bg-video">
+    <video autoplay muted loop playsinline preload="metadata" id="bg-video" aria-hidden="true">
         <source src="media/bkgvid.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
@@ -51,6 +51,20 @@
         <p>While this project provides another example of working with a competent frontend stack, the core of this project is much more personal. My girlfriend is majoring in Biology with a concentration in Cellular and Molecular Biology. Naturally, she has to do a lot of studying outside of her already vigorous classwork. Knowing my interest in and experience with building websites, as well as my tech-focused major, she asked me to built her a simple website with a stopwatch for tracking her study progress. Using HTML, CSS, and JavaScript, I custom built this website with the timer and other fun features as a gift, as well as evidence of my frontend design skills.</p>
     </div>
     <script>
+        const video = document.getElementById('bg-video');
+        if (video) {
+            const revealVideo = () => {
+                if (video.readyState >= 2) {
+                    video.classList.add('ready');
+                }
+            };
+
+            video.addEventListener('canplaythrough', revealVideo, { once: true });
+            video.addEventListener('loadeddata', revealVideo, { once: true });
+            video.addEventListener('error', () => video.classList.add('ready'), { once: true });
+            revealVideo();
+        }
+
         document.querySelectorAll('.content').forEach(content => {
             content.addEventListener('mousemove', (e) => {
                 const rect = content.getBoundingClientRect();
