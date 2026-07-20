@@ -13,19 +13,31 @@ html {
     min-height: 100vh;
 }
 
+:root {
+    --accent: #e8a33d;
+    --accent-soft: rgba(232, 163, 61, 0.15);
+    --accent-glow: rgba(232, 163, 61, 0.35);
+    --accent-dim: rgba(232, 163, 61, 0.55);
+}
+
 body {
     margin: 0;
     padding: 0;
     width: 100%;
     min-height: 100vh;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
     font-weight: 400;
     padding-bottom: 80px;
     background-color: #060606;
+    color: #e8e8e8;
 }
 
+/* Nav */
 .container {
-    background-color: #ffffff;
+    background: rgba(10, 10, 10, 0.55);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(232, 163, 61, 0.18);
     display: flex;
     position: relative;
     z-index: 100;
@@ -33,7 +45,7 @@ body {
 }
 
 nav {
-    padding: 20px 0;
+    padding: 18px 0;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -46,12 +58,13 @@ nav {
 }
 
 .logo a {
-    color: #000000;
+    color: var(--accent);
     text-transform: lowercase;
     font-weight: 700;
     font-size: 18px;
     letter-spacing: 0px;
     text-decoration: none;
+    font-family: 'Space Grotesk', sans-serif;
 }
 
 .nav-wrapper {
@@ -69,12 +82,34 @@ nav ul {
 nav ul li a {
     display: inline-block;
     outline: none;
-    color: #000000;
+    color: #e8e8e8;
     text-transform: lowercase;
     text-decoration: none;
     font-size: 14px;
     letter-spacing: 1.2px;
     font-weight: 600;
+    font-family: 'Space Grotesk', sans-serif;
+    position: relative;
+    transition: color 0.2s ease;
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: width 0.25s ease;
+}
+
+nav ul li a:hover {
+    color: var(--accent);
+}
+
+nav ul li a:hover::after {
+    width: 100%;
 }
 
 .hidden {
@@ -115,26 +150,45 @@ nav ul li a {
     pointer-events: none;
 }
 
+/* dark scrim so text stays readable over any footage */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.35) 40%, rgba(0,0,0,0.6) 100%);
+    pointer-events: none;
+}
+
 /* Content */
 .content {
     position: relative;
     max-width: 800px;
     margin: 100px auto 0;
     padding: 2rem;
-    background: linear-gradient(135deg, rgba(20, 20, 20, 0.9), rgba(50, 50, 50, 0.9));
+    background: linear-gradient(135deg, rgba(22, 20, 16, 0.92), rgba(46, 38, 24, 0.88));
+    border: 1px solid var(--accent-soft);
     border-radius: 10px;
     text-align: center;
     opacity: 0;
     transform: translateY(24px) scale(0.97);
     filter: blur(6px);
     animation: contentReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
     overflow: hidden;
-    color: white;
+    color: #f0f0f0;
 }
 
 .content a {
-    color: white;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent-glow);
+    transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.content a:hover {
+    color: #f5c26e;
+    border-color: #f5c26e;
 }
 
 .content::before {
@@ -144,7 +198,7 @@ nav ul li a {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 40%, transparent 80%);
+    background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), var(--accent-soft) 0%, rgba(232, 163, 61, 0.06) 40%, transparent 80%);
     pointer-events: none;
     border-radius: 10px;
     opacity: 0;
@@ -178,17 +232,112 @@ nav ul li a {
 
 .content h1 {
     margin-bottom: 1rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    color: #fff;
+}
+
+.content h1 span {
+    color: var(--accent);
 }
 
 .content p {
     margin-bottom: 1rem;
     line-height: 1.6;
+    color: #d8d3c8;
+}
+
+/* Project grid (projects.html) */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 800px;
+    margin: 20px auto 0;
+    text-align: left;
+}
+
+.project-card {
+    position: relative;
+    background: linear-gradient(135deg, rgba(22, 20, 16, 0.92), rgba(46, 38, 24, 0.88));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-left: 3px solid var(--accent);
+    border-radius: 8px;
+    padding: 20px 22px;
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+    filter: blur(6px);
+    animation: contentReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px var(--accent-soft);
+    border-left-color: #f5c26e;
+}
+
+.project-card .project-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 6px;
+}
+
+.project-card h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
+    font-weight: 500;
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+.project-card h2 a {
+    color: #fff;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.project-card h2 a:hover {
+    color: var(--accent);
+}
+
+.project-card p {
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: #c8c3b8;
+    margin-bottom: 10px;
+}
+
+.project-card p:last-child {
+    margin-bottom: 0;
+}
+
+.project-card .demo-link {
+    display: inline-block;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent-glow);
+}
+
+.project-card .demo-link:hover {
+    color: #f5c26e;
+    border-color: #f5c26e;
 }
 
 /* Footer */
 footer {
-    background-color: rgb(255, 255, 255);
-    color: rgb(0, 0, 0);
+    background: rgba(10, 10, 10, 0.65);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-top: 1px solid rgba(232, 163, 61, 0.18);
+    color: #999;
     position: fixed;
     left: 0;
     bottom: 0;
@@ -196,6 +345,8 @@ footer {
     text-align: center;
     padding: 12px;
     z-index: 100;
+    font-size: 13px;
+    letter-spacing: 0.4px;
 }
 
 @media screen and (max-width: 864px) {
@@ -218,7 +369,7 @@ footer {
         display: block;
         width: 24px;
         height: 2px;
-        background: #000;
+        background: var(--accent);
         border-radius: 2px;
         position: absolute;
         left: 50%;
@@ -244,7 +395,8 @@ footer {
         width: 100%;
         height: 100vh;
         z-index: 999;
-        background: rgba(0, 0, 0, 0.95);
+        background: rgba(6, 6, 6, 0.97);
+        backdrop-filter: blur(10px);
         opacity: 0;
         visibility: hidden;
         transition: all 0.3s ease;
@@ -309,6 +461,12 @@ footer {
     }
 }
 
+@media only screen and (max-width: 700px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 @media only screen and (max-width: 600px) {
     .content {
         margin: 20px 1rem 20px;
@@ -317,5 +475,9 @@ footer {
 
     .content:first-of-type {
         margin-top: 170px;
+    }
+
+    .projects-grid {
+        margin: 20px 1rem 0;
     }
 }
